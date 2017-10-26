@@ -13,6 +13,7 @@ def initiDir(dir):
     if os.path.exists(dir) == False:
         os.makedirs(dir)
 
+
 def getCurrentPath():
     import os
     print(os.getcwd())
@@ -35,6 +36,22 @@ def log(*args, **kwargs):
         kwargs = ''
     with open(log_dir + 'log.txt', 'a', encoding='utf-8') as f:
         print(dt, *args, kwargs, file=f)
+
+# Python2.7 Version of log
+"""
+def log(*args, **kwargs):
+    args = " ".join(args)
+    format = '%Y-%m-%d %H:%M:%S'
+    # time.time() return the unix time
+    value = time.localtime(int(time.time()))
+    dt = time.strftime(format, value)
+
+    if kwargs == {}:
+        kwargs = ''
+    with open(log_dir + 'log.txt', 'a+') as f:
+        print >> f, dt, args, kwargs
+"""
+
 
 # Estimate the function/method running time
 # How to use: @fn_timer before the function
@@ -68,6 +85,7 @@ def readFile(file):
         return None
     return data
 
+
 # Get the file directory inside the directory
 def getDirFileLists(dir):
     file_paths = []
@@ -76,6 +94,7 @@ def getDirFileLists(dir):
             file_paths.append(parent+filename)
     # print(file_paths)
     return file_paths
+
 
 # Delete the all files inside the directory
 def deleteAllFiles(dir):
@@ -119,4 +138,6 @@ def _initialize_dirs_for_utils():
     initiDir(log_dir)
 
 if __name__ == '__main__':
-    _initialize_dirs_for_utils()
+    # _initialize_dirs_for_utils()
+
+
